@@ -31,7 +31,7 @@ This can provide information about pod behavior, including crashes or errors wit
 
 For detailed information about the `logs` command, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#logs).
 ## `kubectl exec <pod-name> [-c <container-name>] -- <command>`
-Allows exploration of the inside of a container by executing commands directly inside the container. The double-dash (`--`) separates the kubectl command from the command you want to run inside the container. If you do not specify a container name, the command will use the default or first container in the pod.
+Allows exploration of the inside of a container by executing commands directly inside the container. The double-dash (`--`) separates the kubectl command from the command you want to run inside the container. If you do not specify a container name, the command will use the default (if a container is tagged as default) or first (as listed in the manifest) container in the pod.
 
 For detailed information about the `exec` command, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#exec).
 ### Examples
