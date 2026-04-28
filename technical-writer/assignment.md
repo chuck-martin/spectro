@@ -13,7 +13,7 @@ Kubernetes includes several commands to help you debug:
 ## `kubectl get pods [--namespace <namespace-name>]`
 Lists information about all available pods, where `pods` is the resource passed to the `get` command, and `--namespace <name>` is an optional flag (see below). The information about available pods is returned as a table and includes:
  - Name - The name of the pod.
- - Ready - The ratio of ready containers in the pod to the total number of containers in the pod
+ - Ready - The ratio of ready containers in the pod to the total number of containers in the pod.
  - Status - The current status of the pod, which can include Running, Pending, Waiting, or Terminated.
  - Restarts - The total number of container restarts in the pod.
  - Age - The amount of time since pod creation.
@@ -36,13 +36,16 @@ Allows exploration of the inside of a container by executing commands directly i
 For detailed information about the `exec` command, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#exec).
 ### Examples
 `kubectl exec -it <pod-name> -- /bin/bash` - Opens an interactive shell in the default container.
+
 `kubectl exec <pod-name> -- env` - Checks the environmental variables in the default container.
+
 `kubectl exec <pod-name> -- cat /etc/config/settings.yaml` - Views the contents of the `etc/config/settings.yaml` file in the default container.
 ## `kubectl debug <pod-name>`
-Creates a clone of a pod that does not terminate if an error occurs within the container. The `debug` command also provides automation for common debugging tasks.
+Creates a temporary container clone in an existing pod to run diagnostic tools or a clone of a target pod with modified attributes to run diagnostic tools or troubleshoot startup crashes. The `debug` command also provides automation for common debugging tasks.
 
 For detailed information about the `debug` command, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#debug).
 
 ## Additional References
-- https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-strong-getting-started-strong-
-- [What is Kubernetes](https://kubernetes.io/docs/concepts/overview/)
+- [Kubernetes overview](https://kubernetes.io/docs/concepts/overview/)
+- [Kubernetes getting started](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-strong-getting-started-strong-)
+
