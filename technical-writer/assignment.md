@@ -41,7 +41,7 @@ For detailed information about the `exec` command, see the [Kubernetes documenta
 
 `kubectl exec <pod-name> -- cat /etc/config/settings.yaml` - Views the contents of the `etc/config/settings.yaml` file in the default container.
 ## `kubectl debug <pod-name>`
-Creates a temporary container clone in an existing pod to run diagnostic tools or a clone of a target pod with modified attributes to run diagnostic tools or troubleshoot startup crashes. The `debug` command also provides automation for common debugging tasks.
+Creates a temporary container clone in an existing pod to run diagnostic tools or a clone of a target pod with modified attributes to troubleshoot startup crashes. The `debug` command also provides automation for common debugging tasks.
 
 For detailed information about the `debug` command, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#debug).
 
