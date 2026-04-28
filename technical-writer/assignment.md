@@ -5,7 +5,7 @@ Kubernetes includes several commands to help you debug:
 |--|--|
 | `kubectl get pods [--namespace <namespace-name>]` | Get available pod names to pass to the `logs`, `exec`, and `debug` commands |
 |`kubectl logs <pod-name>`|Retrieve pod logs|
-|`kubectl\ exec\ <pod-name>\ [-c\ <container-name>]\ --\ <command>`|Explore in a container|
+|`kubectl exec <pod-name> [-c <container-name>] -- <command>`|Explore in a container|
 |`kubectl debug <pod-name>`|Create a cloned pod specifically configured for debugging|
 
 
