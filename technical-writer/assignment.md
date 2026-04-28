@@ -6,7 +6,7 @@ Kubernetes includes several commands to help you debug:
 | `kubectl get pods [--namespace <namespace-name>]` | Get available pod names to pass to the `logs`, `exec`, and `debug` commands |
 |`kubectl logs <pod-name>`|Retrieve pod logs|
 |`kubectl exec <pod-name> [-c <container-name>] -- <command>`|Explore in a container|
-|`kubectl debug <pod-name>`|Create a clone pod specifically configured for debugging|
+|`kubectl debug <pod-name>`|Create a cloned pod specifically configured for debugging|
 
 
 **Note:** All CLI commands used to interact with the Kubernetes API server begin with `kubectl` .
@@ -43,10 +43,6 @@ Creates a clone of a pod that does not terminate if an error occurs within the c
 
 For detailed information about the `debug` command, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#debug).
 
-
-
 ## Additional References
-
 - https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-strong-getting-started-strong-
-
 - [What is Kubernetes](https://kubernetes.io/docs/concepts/overview/)
