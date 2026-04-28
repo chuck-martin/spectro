@@ -1,21 +1,16 @@
 # Debug Operations in Kubernetes
 Kubernetes includes several commands to help you debug:
 
- - `kubectl get pods [--namespace <name>]`
- - `kubectl logs <name>`
- - `kubectl exec <name>`
- - `kubectl debug <name`
-
 |Use This Command| To Do This |
 |--|--|
-| `kubectl get pods [--namespace <name>]` | Get available pod names to pass to the `logs`, `exec`, and `debug` commands |
-|`kubectl logs <name>`|Retrieve pod logs|
-|`kubectl exec <name>`|Explore in a container|
-|`kubectl debug <name>`|Clone a pod|
+| `kubectl get pods [--namespace <namespace-name>]` | Get available pod names to pass to the `logs`, `exec`, and `debug` commands |
+|`kubectl logs <pod-name>`|Retrieve pod logs|
+|`kubectl exec <pod-name> [-c <container-name>] -- <command>`|Explore in a container|
+|`kubectl debug <pod-name>`|Create a clone pod specifically configured for debugging|
 
 
 **Note:** All CLI commands used to interact with the Kubernetes API server begin with `kubectl` .
-## `kubectl get pods [--namespace <name>]`
+## `kubectl get pods [--namespace <namespace-name>]`
 Lists information about all available pods, where `pods` is the resource passed to the `get` command, and `--namespace <name>` is an optional flag (see below). The information about available pods is returned as a table and includes:
  - Name - The name of the pod.
  - Ready - The ratio of ready containers in the pod to the total number of containers in the pod
@@ -29,30 +24,28 @@ A namespace defines and names a logical virtual cluster within a physical cluste
 For detailed information about the `get` command, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get).
 
 
-## kubectl logs
-Retrieves the logs of all containers in a pod. 
-## kubectl exec
-Allows exploration of the inside of a container.
-## kubectl debug
-Creates a clone of a pod that does not terminate if an error occurs within the container.
+## `kubectl logs <pod-name>`
+Retrieves the logs of all containers in a pod, where `pod-name` is the resource passed to the `logs` command. 
+
+This can provide information about pod behavior, including crashes or errors without needing to log in to the pod.
+
+For detailed information about the `logs` command, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#logs).
+## `kubectl exec <pod-name> [-c <container-name>] -- <command>`
+Allows exploration of the inside of a container by executing commands directly inside the container. The double-dash (`--`) separates the kubectl command from the command you want to run inside the container. If you do not specify a container name, the command will use the default or first container in the pod.
+
+For detailed information about the `exec` command, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#exec).
+### Examples
+`kubectl exec -it <pod-name> -- /bin/bash` - Opens an interactive shell in the default container.
+`kubectl exec <pod-name> -- env` - Checks the environmental variables in the default container.
+`kubectl exec <pod-name> -- cat /etc/config/settings.yaml` - Views the contents of the `etc/config/settings.yaml` file in the default container.
+## `kubectl debug <pod-name>`
+Creates a clone of a pod that does not terminate if an error occurs within the container. The `debug` command also provides automation for common debugging tasks.
+
+For detailed information about the `debug` command, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#debug).
 
 
 
-
-
-Kubernetes contains several commands, sometimes we can use these commands to do things. A good command to know is kubectl get pods which is used to get a list of all pods that are available and what their status is. Just rememember that when you use this command tat you may have to specify the `namespace`.
-
-```shell
-kubectl get pods --namespace 
-```
-
-Speaking of commands, kubectl is the CLI that is used to interact with k8s. The kubectl cli commmunicates with the kubernettes API server.  Another command that is helpful is the kubectl logs command. In Azure, kubernetess is available, just like other cloud providers. This command is used to retrive the logs of a specific pod - do use this when you have to review logs or need to debug a container. Another we will dicuss is the `kubectl exec` command. A command that we can use to debug a container from the inside or to explore the the enviroment of the container itself.  I recommend when debugging you start with kubectl get pods, then `kubectl logs` and lastly we can use `kubectl exec` to explore the inside of the container and review other log files or configurations. 
-
-**Note:** The command `kubectl debug` is another option to considering when debugging a container. This command can be used to create a clone of a pod that does not terminate if an error is experienced inside the container. 
-
-
-
-# References
+## Additional References
 
 - https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-strong-getting-started-strong-
 
